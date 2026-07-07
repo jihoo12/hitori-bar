@@ -3,7 +3,6 @@
 
 #include "clock.h"
 #include "battery.h"
-#include "volume.h"
 
 #define BAR_HEIGHT 36
 
@@ -34,10 +33,6 @@ static void load_css(void) {
         "label.bar-battery {"
         "  padding: 0 8px;"
         "  color: #a6e3a1;"
-        "}"
-        "label.bar-volume {"
-        "  padding: 0 8px;"
-        "  color: #89b4fa;"
         "}";
     gtk_css_provider_load_from_string(provider, css);
     gtk_style_context_add_provider_for_display(
@@ -101,14 +96,6 @@ static GtkWidget *make_right_section(void) {
         gtk_box_append(GTK_BOX(box), battery_label);
         battery_init(battery_label);
     }
-
-    if (volume_available()) {
-        GtkWidget *volume_label = gtk_label_new("");
-        gtk_widget_add_css_class(volume_label, "bar-volume");
-        gtk_box_append(GTK_BOX(box), volume_label);
-        volume_init(volume_label);
-    }
-
     return box;
 }
 
