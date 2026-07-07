@@ -1,0 +1,3 @@
+*.o
+hitori-bar
+.cache/
